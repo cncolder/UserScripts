@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CloudApp Theater Mode
 // @namespace    http://tampermonkey.net/
-// @version      0.4
+// @version      0.5
 // @description  CloudApp theater mode UI redesign. Maximum size video, and move toolbox buttons into nav bar.
 // @author       colder
 // @homepage     https://github.com/cncolder
