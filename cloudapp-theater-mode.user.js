@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CloudApp Theater Mode
 // @namespace    http://tampermonkey.net/
-// @version      0.8
+// @version      0.9
 // @description  CloudApp theater mode UI redesign for maximum size content, and moving toolbox buttons into the nav bar.
 // @author       colder
 // @homepage     https://github.com/cncolder
@@ -11,8 +11,6 @@
 // @run-at       document-end
 // @grant        none
 // ==/UserScript==
-
-/* eslint-disable */
 
 (function () {
   "use strict";
@@ -24,93 +22,95 @@
 
   style.id = "cloudAppRedesign";
   style.textContent = css`
-    #viewer-item,
-    .cta-container.below {
-      padding: 2px 0px !important;
-    }
+    @media screen and (min-width: 1200px) and (min-height: 700px) {
+      #viewer-item,
+      .cta-container.below {
+        padding: 2px 0px !important;
+      }
 
-    .viewer-main-container .sidebar-right {
-      position: absolute !important;
-      left: -9999px;
-    }
+      .viewer-main-container .sidebar-right {
+        position: absolute !important;
+        left: -9999px;
+      }
 
-    #shareDropModal i,
-    [data-testid="footer-actions-download"] i,
-    [data-testid="action-apply-template"],
-    [data-testid="cta-menu-link"] i,
-    [data-testid="viewer-annotate-link"] i,
-    [data-testid="footer-actions-add-to-collection"] i {
-      display: block;
-      position: fixed;
-      left: 20px;
-      z-index: 11;
-      padding: 0.5rem;
-      font-size: 1rem;
-      color: #4a4a4a;
-    }
-    [data-testid="action-apply-template"] .owner-action-label {
-      display: none;
-    }
+      #shareDropModal i,
+      [data-testid="footer-actions-download"] i,
+      [data-testid="action-apply-template"],
+      [data-testid="cta-menu-link"] i,
+      [data-testid="viewer-annotate-link"] i,
+      [data-testid="footer-actions-add-to-collection"] i {
+        display: block;
+        position: fixed;
+        left: 20px;
+        z-index: 11;
+        padding: 0.5rem;
+        font-size: 1rem;
+        color: #4a4a4a;
+      }
+      [data-testid="action-apply-template"] .owner-action-label {
+        display: none;
+      }
 
-    #shareDropModal i {
-      top: ${top}px;
-    }
-    [data-testid="footer-actions-download"] i {
-      top: ${top + 48 * 1}px;
-    }
-    [data-testid="action-apply-template"] {
-      top: ${top + 48 * 2}px;
-    }
-    [data-testid="cta-menu-link"] i {
-      top: ${top + 48 * 3}px;
-    }
-    [data-testid="viewer-annotate-link"] i {
-      top: ${top + 48 * 4}px;
-    }
-    [data-testid="footer-actions-add-to-collection"] i {
-      top: ${top + 48 * 5}px;
-    }
+      #shareDropModal i {
+        top: ${top}px;
+      }
+      [data-testid="footer-actions-download"] i {
+        top: ${top + 48 * 1}px;
+      }
+      [data-testid="action-apply-template"] {
+        top: ${top + 48 * 2}px;
+      }
+      [data-testid="cta-menu-link"] i {
+        top: ${top + 48 * 3}px;
+      }
+      [data-testid="viewer-annotate-link"] i {
+        top: ${top + 48 * 4}px;
+      }
+      [data-testid="footer-actions-add-to-collection"] i {
+        top: ${top + 48 * 5}px;
+      }
 
-    .analytics-section-overview[data-testid="analytics-section-overview"] {
-      position: fixed;
-      top: -10px;
-      right: 512px;
-      z-index: 1;
-      margin: 0px;
-      width: 256px;
-      background: transparent !important;
-      box-shadow: none !important;
-    }
-    .analytics-section {
-      position: fixed;
-      top: 64px;
-      right: 512px;
-      margin: 0px !important;
-    }
+      .analytics-section-overview[data-testid="analytics-section-overview"] {
+        position: fixed;
+        top: -10px;
+        right: 512px;
+        z-index: 1;
+        margin: 0px;
+        width: 256px;
+        background: transparent !important;
+        box-shadow: none !important;
+      }
+      .analytics-section {
+        position: fixed;
+        top: 64px;
+        right: 512px;
+        margin: 0px !important;
+      }
 
-    #comments-enable-form {
-      position: fixed;
-      top: 4px;
-      right: 196px;
-      z-index: 1;
-      width: 256px;
-    }
-    #comments-enable-form .bottom-section {
-      background: transparent;
-      box-shadow: none;
-    }
+      #comments-enable-form {
+        position: fixed;
+        top: 4px;
+        right: 196px;
+        z-index: 1;
+        width: 256px;
+      }
+      #comments-enable-form .bottom-section {
+        background: transparent;
+        box-shadow: none;
+      }
 
-    .comments-section {
-      padding: 40px !important;
-    }
+      .comments-section {
+        padding: 40px !important;
+      }
 
-    #beacon-container .BeaconFabButtonFrame {
-      right: 8px;
-      bottom: 8px;
-    }
-    #beacon-container .BeaconContainer {
-      right: 8px;
-      bottom: 75px;
+      #beacon-container .BeaconFabButtonFrame {
+        right: 8px;
+        bottom: 8px;
+      }
+      #beacon-container .BeaconContainer {
+        right: 8px;
+        bottom: 75px;
+      }
     }
   `;
 
