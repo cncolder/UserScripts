@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CloudApp Theater Mode
 // @namespace    http://tampermonkey.net/
-// @version      0.9
+// @version      1.0
 // @description  CloudApp theater mode UI redesign for maximum size content, and moving toolbox buttons into the nav bar.
 // @author       colder
 // @homepage     https://github.com/cncolder
@@ -15,24 +15,26 @@
 (function () {
   "use strict";
 
+  /** String template string code highlights. */
   const css = String.raw;
-  const top = 256;
+  const buttonTop = 256;
 
   const style = document.createElement("style");
 
-  style.id = "cloudAppRedesign";
+  style.id = "CloudAppTheaterMode";
   style.textContent = css`
-    @media screen and (min-width: 1200px) and (min-height: 700px) {
+    @media screen and (min-width: 600px) {
+      /* Page content */
       #viewer-item,
       .cta-container.below {
         padding: 2px 0px !important;
       }
-
+      /* Toolbox */
       .viewer-main-container .sidebar-right {
         position: absolute !important;
         left: -9999px;
       }
-
+      /* Toolbox buttons */
       #shareDropModal i,
       [data-testid="footer-actions-download"] i,
       [data-testid="action-apply-template"],
@@ -52,55 +54,64 @@
       }
 
       #shareDropModal i {
-        top: ${top}px;
+        top: ${buttonTop}px;
       }
       [data-testid="footer-actions-download"] i {
-        top: ${top + 48 * 1}px;
+        top: ${buttonTop + 48 * 1}px;
       }
       [data-testid="action-apply-template"] {
-        top: ${top + 48 * 2}px;
+        top: ${buttonTop + 48 * 2}px;
       }
       [data-testid="cta-menu-link"] i {
-        top: ${top + 48 * 3}px;
-      }
-      [data-testid="viewer-annotate-link"] i {
-        top: ${top + 48 * 4}px;
+        top: ${buttonTop + 48 * 3}px;
       }
       [data-testid="footer-actions-add-to-collection"] i {
-        top: ${top + 48 * 5}px;
+        top: ${buttonTop + 48 * 4}px;
+      }
+      [data-testid="viewer-annotate-link"] i {
+        top: ${buttonTop + 48 * 5}px;
       }
 
+      /* n views */
       .analytics-section-overview[data-testid="analytics-section-overview"] {
         position: fixed;
-        top: -10px;
-        right: 512px;
+        top: -18px;
+        right: 128px;
         z-index: 1;
+        display: flex !important;
+        flex-direction: column;
         margin: 0px;
-        width: 256px;
+        min-width: 128px;
         background: transparent !important;
         box-shadow: none !important;
       }
+      /* View all analytics dropdown */
       .analytics-section {
         position: fixed;
         top: 64px;
-        right: 512px;
+        right: 64px;
         margin: 0px !important;
       }
 
+      /* Anyone can comment checkbox */
       #comments-enable-form {
         position: fixed;
         top: 4px;
-        right: 196px;
+        right: 256px;
         z-index: 1;
-        width: 256px;
       }
       #comments-enable-form .bottom-section {
+        display: flex;
+        flex-direction: row-reverse;
         background: transparent;
         box-shadow: none;
       }
+      #comments-enable-form .bottom-section input {
+        margin: 0px 8px;
+      }
 
       .comments-section {
-        padding: 40px !important;
+        padding: 24px 24px 24px 96px !important;
       }
 
       #beacon-container .BeaconFabButtonFrame {
@@ -110,6 +121,18 @@
       #beacon-container .BeaconContainer {
         right: 8px;
         bottom: 75px;
+      }
+    }
+
+    /* Hide toolbox buttons when height <= 700 */
+    @media screen and (min-width: 600px) and (max-height: 700px) {
+      #shareDropModal i,
+      [data-testid="footer-actions-download"] i,
+      [data-testid="action-apply-template"],
+      [data-testid="cta-menu-link"] i,
+      [data-testid="viewer-annotate-link"] i,
+      [data-testid="footer-actions-add-to-collection"] i {
+        display: none !important;
       }
     }
   `;
