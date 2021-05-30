@@ -15,7 +15,7 @@
 (function () {
   "use strict";
 
-  /** String template string code highlights. */
+  /** CSS template literals code highlights. */
   const css = String.raw;
   const buttonTop = 256;
 
