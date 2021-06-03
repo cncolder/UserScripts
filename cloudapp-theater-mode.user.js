@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CloudApp Theater Mode
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  CloudApp theater mode UI redesign for maximum size content, and moving toolbox buttons into the nav bar.
 // @author       colder
 // @homepage     https://github.com/cncolder
@@ -29,6 +29,13 @@
       .cta-container.below {
         padding: 2px 0px !important;
       }
+
+      /* Image */
+      #image-item {
+        box-sizing: border-box;
+        padding: 0 4px 0 76px;
+      }
+
       /* Toolbox */
       .viewer-main-container .sidebar-right {
         position: absolute !important;
